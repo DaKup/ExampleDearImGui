@@ -5,7 +5,11 @@
     {
       "name": "fmt",
       "version>=": "8.1.1#1"
-    }
+    },
+    "vulkan",
+    "glfw3",
+    "glslang",
+    "glm"
   ],
   "default-features": [],
   "features": {

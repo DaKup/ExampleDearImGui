@@ -35,7 +35,29 @@ target_link_libraries(ExampleDearImGui_lib PRIVATE fmt::fmt)
 
 # ---- Declare executable ----
 
-add_executable(ExampleDearImGui_exe source/main.cpp)
+add_executable(ExampleDearImGui_exe
+  source/main.cpp
+  
+  # dear imgui files:
+  # backends:
+  imgui/backends/imgui_impl_glfw.cpp
+  imgui/backends/imgui_impl_vulkan.cpp
+
+  # imgui:
+  imgui/imgui.cpp
+  imgui/imgui_draw.cpp
+  imgui/imgui_demo.cpp
+  
+  imgui/imgui_tables.cpp
+  imgui/imgui_widgets.cpp
+
+  # headers (for windows):
+  imgui/imgui.h
+  imgui/imgui_internal.h
+  imgui/imstb_rectpack.h
+  imgui/imstb_textedit.h
+  imgui/imstb_truetype.h
+  )
 add_executable(ExampleDearImGui::exe ALIAS ExampleDearImGui_exe)
 
 set_target_properties(
@@ -44,9 +66,21 @@ set_target_properties(
     EXPORT_NAME exe
 )
 
+target_include_directories(
+  TestApplication_exe ${warning_guard}
+    PRIVATE
+    "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/imgui>"
+    "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/imgui/backends>"
+)
+
 target_compile_features(ExampleDearImGui_exe PRIVATE cxx_std_17)
 
-target_link_libraries(ExampleDearImGui_exe PRIVATE ExampleDearImGui_lib)
+find_package(Vulkan REQUIRED)
+find_package(glm REQUIRED)
+find_package(glfw3 CONFIG REQUIRED)
+find_package(glslang CONFIG REQUIRED)
+
+target_link_libraries(ExampleDearImGui_exe PRIVATE ExampleDearImGui_lib glfw Vulkan::Vulkan glm::glm glslang)
 
 # ---- Install rules ----
 
