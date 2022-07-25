@@ -67,8 +67,8 @@ set_target_properties(
 )
 
 target_include_directories(
-  TestApplication_exe ${warning_guard}
-    PRIVATE
+  ExampleDearImGui_exe ${warning_guard}
+    PUBLIC
     "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/imgui>"
     "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/imgui/backends>"
 )
