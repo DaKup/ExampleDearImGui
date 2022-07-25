@@ -1,2 +1,32 @@
 # ExampleDearImGui
-Dear ImGui Example
+
+This is the ExampleDearImGui project.
+
+```bash
+git clone --recurse-submodules https://github.com/DaKup/ExampleDearImGui.git
+``` 
+
+```bash
+.\vcpkg\bootstrap-vcpkg.bat
+./vcpkg/bootstrap-vcpkg.sh
+```
+
+```bash
+cmake -B build -S . -DCMAKE_INSTALL_PREFIX=install
+```
+
+# Building and installing
+
+See the [BUILDING](BUILDING.md) document.
+
+# Contributing
+
+See the [CONTRIBUTING](CONTRIBUTING.md) document.
+
+# Licensing
+
+<!--
+Please go to https://choosealicense.com/licenses/ and choose a license that
+fits your needs. The recommended license for a project of this type is the
+GNU AGPLv3.
+-->
