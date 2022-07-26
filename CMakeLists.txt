@@ -37,7 +37,7 @@ target_link_libraries(ExampleDearImGui_lib PRIVATE fmt::fmt)
 
 add_executable(ExampleDearImGui_exe
   source/glfw_vulkan.cpp
-  source/main.cpp
+  source/application.cpp
   
   # dear imgui files:
   # backends:
@@ -82,6 +82,7 @@ find_package(glfw3 CONFIG REQUIRED)
 find_package(glslang CONFIG REQUIRED)
 
 target_link_libraries(ExampleDearImGui_exe PRIVATE ExampleDearImGui_lib glfw Vulkan::Vulkan glm::glm glslang)
+target_compile_definitions(ExampleDearImGui_exe PUBLIC -DImTextureID=ImU64) # required for user textures in vulkan
 
 # ---- Install rules ----
 
