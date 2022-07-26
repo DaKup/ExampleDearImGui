@@ -36,6 +36,7 @@ target_link_libraries(ExampleDearImGui_lib PRIVATE fmt::fmt)
 # ---- Declare executable ----
 
 add_executable(ExampleDearImGui_exe
+  source/glfw_vulkan.cpp
   source/main.cpp
   
   # dear imgui files:
