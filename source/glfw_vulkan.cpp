@@ -138,7 +138,6 @@ auto main(int argc, char *argv[]) -> int
 Application::Application()
 {
     m_glfw_window = nullptr;
-
     m_vk_allocation_callbacks = nullptr;
     VkInstance g_Instance = nullptr;
     VkPhysicalDevice g_PhysicalDevice = nullptr;
@@ -155,17 +154,13 @@ Application::Application()
 
 Application::~Application()
 {
-    // Cleanup
     VkResult err = vkDeviceWaitIdle(m_vk_device);
     check_vk_result(err);
-
     ImGui_ImplVulkan_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
-
     CleanupVulkanWindow();
     CleanupVulkan();
-
     glfwDestroyWindow(m_glfw_window);
     glfwTerminate();
 }
@@ -229,8 +224,10 @@ void Application::RunMainLoop()
         //  world!"
         //                                  // and append into it.
 
-        //  ImGui::Text("This is some useful text.");  // Display some text (you can
-        //                                             // use a format strings too)
+        //  ImGui::Text("This is some useful text.");  // Display some text (you
+        //  can
+        //                                             // use a format strings
+        //                                             too)
         //  ImGui::Checkbox(
         //      "Demo Window",
         //      &show_demo_window);  // Edit bools storing our window open/close
@@ -263,7 +260,8 @@ void Application::RunMainLoop()
         // if (show_another_window) {
         //   ImGui::Begin(
         //       "Another Window",
-        //       &show_another_window);  // Pass a pointer to our bool variable (the
+        //       &show_another_window);  // Pass a pointer to our bool variable
+        //       (the
         //                               // window will have a closing button that
         //                               will
         //                               // clear the bool when clicked)
@@ -282,7 +280,9 @@ void Application::RunMainLoop()
         m_imgui_vulkan_window.ClearValue.color.float32[2] = clear_color.z * clear_color.w;
         m_imgui_vulkan_window.ClearValue.color.float32[3] = clear_color.w;
         if (!main_is_minimized)
+        {
             FrameRender(main_draw_data);
+        }
 
         ImGuiIO &io = ImGui::GetIO();
         // Update and Render additional Platform Windows
@@ -294,7 +294,9 @@ void Application::RunMainLoop()
 
         // Present Main Platform Window
         if (!main_is_minimized)
+        {
             FramePresent();
+        }
     }
 }
 
@@ -334,7 +336,6 @@ int Application::SetupApplication()
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO &io = ImGui::GetIO();
-    //(void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Enable Keyboard Controls
     // io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad
     // Controls
@@ -499,8 +500,8 @@ void Application::SetupVulkan(const char **extensions, uint32_t extensions_count
         // first one available. This covers most common cases
         // (multi-gpu/integrated+dedicated graphics). Handling more complicated
         // setups (multiple dedicated GPUs) is out of scope of this sample.
-        int use_gpu = 0;
-        for (int i = 0; i < (int)gpu_count; i++)
+        uint32_t use_gpu = 0;
+        for (uint32_t i = 0; i < gpu_count; i++)
         {
             VkPhysicalDeviceProperties properties;
             vkGetPhysicalDeviceProperties(gpus[i], &properties);
