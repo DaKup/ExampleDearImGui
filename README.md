@@ -18,6 +18,8 @@ cmake --build . --target install
 ```
 
 
+![](thumbnail.jpg)
+
 
 # Building and installing
 
