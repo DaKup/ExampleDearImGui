@@ -6,14 +6,18 @@ This is the ExampleDearImGui project.
 git clone --recurse-submodules https://github.com/DaKup/ExampleDearImGui.git
 ``` 
 
+optional:
 ```bash
 .\vcpkg\bootstrap-vcpkg.bat
 ./vcpkg/bootstrap-vcpkg.sh
 ```
 
 ```bash
-cmake -B build -S . -DCMAKE_INSTALL_PREFIX=install
+cmake -B build -S . -DCMAKE_INSTALL_PREFIX=install -DX_VCPKG_APPLOCAL_DEPS_INSTALL=True
+cmake --build . --target install
 ```
+
+
 
 # Building and installing
 
