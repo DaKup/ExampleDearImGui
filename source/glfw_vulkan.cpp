@@ -479,9 +479,9 @@ void Application::SetupVulkan(const char **extensions, uint32_t extensions_count
         check_vk_result(err);
 #else
         // Create Vulkan Instance without any debug feature
-        err = vkCreateInstance(&create_info, g_Allocator, &g_Instance);
+        err = vkCreateInstance(&create_info, m_vk_allocation_callbacks, &m_vk_instance);
         check_vk_result(err);
-        IM_UNUSED(g_DebugReport);
+        IM_UNUSED(m_vk_debug_report_callback_ext);
 #endif
     }
 
